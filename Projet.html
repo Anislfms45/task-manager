@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="Class_name.js" rel="stylesheet" type="script/javascript">
+  
+  <link href="Style-TP.css" rel="stylesheet" type="text/css">
+<style>
+
+</style>
+
+
+  <body style="background-color: grey ;" >
+  <div   class="container"  id="center" style="background : black ; width: 50%;margin-top: 6% ; margin-bottom: 6%;">
+    
+     <br>
+     <label style="font-size: 220% ; height: 40px; color: white; width: 70% ; display: inline-block" >Gestionnaire de Taches </label>
+    
+     <button type="button" id="Bilan" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="right: 10px;">Bilan</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <table class="table" id="first_table" style="width: 50%; margin: auto;" >
+        <thead>
+          <tr>
+            <th scope="col">Information</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Pourcentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th >Taches en cours</th>
+            <td id='TECV'>0</td>
+            <td id='tecv'>0</td>
+          </tr>
+          <tr>
+           <th>Taches Achevées</th>
+           <td id="TA">0</td>
+           <td id ="ta">0</td>
+
+          </tr>
+          <tr>
+            <th>Total</th>
+            <td id="TOT1">0</td>
+            <td>100%</td>
+ 
+           </tr>
+        
+        </tbody>
+      </table>
+      <hr>
+      <table class="table" id="second_table" style="width: 50%; margin: auto;" >
+        <thead>
+          <tr>
+            <th scope="col">Information</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Pourcentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th >Tache en retard</th>
+            <td id="TER">0</td>
+            <td id='ter'>0</td>
+          </tr>
+          <tr>
+           <th>Taches Terminées avec retard</th>
+           <td id="TTAR">0</td>
+           <td id="ttar">0</td>
+
+          </tr>
+          <tr>
+            <th>Taches acheevées a tempse</th>
+            <td id="TAAT">0</td>
+            <td id="taat">0</td>
+ 
+           </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+     <hr>
+    <!--Ajouter button Location-->
+     <div >
+        <p style="display: none" id="Id_Elemenet">0</p>
+         <input type="text"   style="display: inline-block; width: 70%;" class="form-control" id="Titre-de-la-tache" placeholder="Titre de la Tache">
+    
+    
+         <button type="button" onclick="Move_value_to_modal()" id="Ajouter" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" disabled>Ajouter</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Information Sur La tache</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div>
+                    <label style="font-size: 35px" >Titre de la Taches : </label>
+                    <input type="text" id="Titre_Tach" style="display: inline-block;" class="form-control" id="Titre-de-la-tache" placeholder="Titre de la Tache">
+
+                </div>
+                <div>
+                        <label style="font-size: 35px" >Priorité : </label>
+                  
+                        <select style="float: right"  class="form-control form-control-lg" id="dropdownMenu2">
+                          <option  style="background-color: red">Haute</option>
+                          <option  style="background-color: orange">Moyenne</option>
+                          <option  style="background-color: aqua" >Basse</option>
+                        </select>
+                        
+                </div>
+                <div>
+                        <label style="font-size: 40px" >Echeance : </label>
+                        <input type="time" step="2" style="font-size: 50px;" value="00:00:00" id="Time_stemp">
+
+                </div>
+            </div>
+            <div class="modal-footer 1">
+              <button type="reset" class="btn btn-secondary"  >Close</button>
+              <button type="button" class="btn btn-primary" onclick="Form_elements()" id='Ajout_tache' >Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!--THIS PART IS FOR MODIFICATION -->
+     
+      
+        
+      
+    <!--Main Controller where we are going tu put our Taches-->
+    
+
+    </div>
+    <hr>
+    <!-- Created Our Main concern -->
+    <div class="container" style="width:100%;height: 350px; ;overflow:auto ;overflow-x: hidden; border-style: solid;">
+        <ul id="List_tach" style="list-style: none;">
+        
+         
+          </ul>
+  
+    </div>
+    
+   
+      
+      <br>
+
+  </div>
+ 
+  
+
+  <script src="Class_name.js">
+  
+   
+ 
+    </script>
+
+
+  </body>
+
+</html>
